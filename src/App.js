@@ -6,13 +6,17 @@ import ContactPage from './containers/contactPage/ContactPage'
 import AppointmentPage from './containers/appointmentPage/AppointmentPage'
 
 function App() {
-	console.log(routes)
 	return (
 		<div className='App'>
 			<Router>
 				<NavBar />
 				<Switch>
-					<Route path='/'></Route>
+					<Route path={routes.appointments.url}>
+						<AppointmentPage />
+					</Route>
+					<Route path={routes.doctors.url}>
+						<ContactPage />
+					</Route>
 				</Switch>
 				<Redirect exact from='/' to={routes.appointments.url} />
 			</Router>
