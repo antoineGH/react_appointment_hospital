@@ -9,15 +9,15 @@ export default function NavBar() {
 		<>
 			<Navbar bg='light' expand='lg'>
 				<Container>
-					<Navbar.Brand>Appointment Planner</Navbar.Brand>
+					<Navbar.Brand href='/'>Appointment Planner</Navbar.Brand>
 					<Navbar.Toggle aria-controls='basic-navbar-nav' />
 					<Navbar.Collapse id='basic-navbar-nav'>
 						<Nav className='me-auto'>
-							<NavLink className='nav-link' to={routes.doctors} exact activeClassName='current'>
-								Appointments
+							<NavLink className='nav-link' to={routes.appointments.url} exact activeClassName='current'>
+								{routes.appointments.title}
 							</NavLink>
-							<NavLink className='nav-link' to={routes.appointments} exact activeClassName='current'>
-								Doctors
+							<NavLink className='nav-link' to={routes.doctors.url} exact activeClassName='current'>
+								{routes.doctors.title}
 							</NavLink>
 						</Nav>
 					</Navbar.Collapse>
