@@ -1,0 +1,20 @@
+.toast-header {
+	display: flex;
+	flex-direction: row;
+	margin: auto;
+	justify-content: space-between;
+}
+
+.alert_custom {
+	height: 20px;
+	width: 20px;
+	border-radius: 0.25rem;
+}
+
+.alert_warning {
+	background-color: #ffc107;
+}
+
+.alert_danger {
+	background-color: #dc3545;
+}
