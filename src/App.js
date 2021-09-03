@@ -46,7 +46,7 @@ function App() {
 						<AppointmentPage />
 					</Route>
 					<Route path={routes.doctors.url}>
-						<ContactPage />
+						<ContactPage contacts={contacts} addContact={addContact} removeContact={removeContact} />
 					</Route>
 				</Switch>
 				<Redirect exact from='/' to={routes.appointments.url} />
