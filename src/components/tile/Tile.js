@@ -1,5 +1,6 @@
 import React from 'react'
 import './Tile.css'
+
 import { Row, Col } from 'react-bootstrap'
 
 export default function Tile(props) {
