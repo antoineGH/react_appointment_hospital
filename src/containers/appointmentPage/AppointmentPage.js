@@ -18,7 +18,7 @@ export default function AppointmentPage(props) {
 
 	return (
 		<Container fluid className='container_appointment'>
-			<CountElement title='Appointments' count={countAppointments} />
+			<CountElement title='Appointment' count={countAppointments} />
 			<TileList items={appointments} removeItems={removeAppointment} />
 		</Container>
 	)

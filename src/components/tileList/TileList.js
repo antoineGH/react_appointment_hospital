@@ -6,6 +6,6 @@ export default function TileList(props) {
 
 	return items.map((item, count) => {
 		count++
-		return <Tile key={count} position={count} item={item} removeItems={removeItems} />
+		return <Tile key={count} position={count} item={item} removeItem={removeItems} />
 	})
 }

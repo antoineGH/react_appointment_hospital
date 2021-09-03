@@ -45,7 +45,7 @@ export default function ContactPage(props) {
 
 	return (
 		<Container className='container_contact'>
-			<CountElement title='Doctors' count={countDoctors} />
+			<CountElement title='Doctor' count={countDoctors} />
 			<TileList items={contacts} removeItems={removeContact} />
 		</Container>
 	)
