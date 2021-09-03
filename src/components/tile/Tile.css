@@ -1,0 +1,39 @@
+.remove-button {
+	font-size: 80%;
+	float: right;
+	border: 0;
+	border-radius: 3px;
+	background: transparent;
+	width: 30px;
+	height: 30px;
+	align-self: center;
+	justify-content: center;
+}
+
+.remove-button:hover {
+	color: #fff;
+	background-color: #000;
+}
+
+.row_tile {
+	display: flex;
+	flex-direction: row;
+	padding: 0.5rem 1rem;
+	margin: 1rem 0rem;
+	background-color: rgba(0, 0, 0, 0.151);
+	border-radius: 0.25rem;
+}
+
+.row_tile .col {
+	margin: auto;
+}
+
+.row_tile .col p {
+	margin: auto;
+}
+
+@media (max-width: 576px) {
+	.row_tile {
+		flex-direction: column;
+	}
+}

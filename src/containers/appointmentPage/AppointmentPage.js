@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Container, Row, Col } from 'react-bootstrap'
 import CountElement from '../../components/countElement/CountElement'
+import TileList from '../../components/tileList/TileList'
 
 export default function AppointmentPage(props) {
 	const { appointments, contacts, addAppointment, removeAppointment } = props
@@ -16,9 +17,9 @@ export default function AppointmentPage(props) {
 	}, [appointments])
 
 	return (
-		<Container>
+		<Container fluid className='container_appointment'>
 			<CountElement title='Appointments' count={countAppointments} />
-			<Row></Row>
+			<TileList items={appointments} removeItems={removeAppointment} />
 		</Container>
 	)
 }

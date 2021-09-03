@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
-import { Container, Row, Col } from 'react-bootstrap'
+import { Container } from 'react-bootstrap'
 import CountElement from '../../components/countElement/CountElement'
+import TileList from '../../components/tileList/TileList'
 
 export default function ContactPage(props) {
 	const { contacts, addContact, removeContact } = props
@@ -43,10 +44,9 @@ export default function ContactPage(props) {
 	}
 
 	return (
-		<Container>
+		<Container className='container_contact'>
 			<CountElement title='Doctors' count={countDoctors} />
-
-			<Row></Row>
+			<TileList items={contacts} removeItems={removeContact} />
 		</Container>
 	)
 }

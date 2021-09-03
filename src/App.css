@@ -36,3 +36,11 @@
 		transform: rotate(360deg);
 	}
 }
+
+.container_appointment {
+	max-width: 1320px;
+}
+
+.container_contact {
+	max-width: 1320px;
+}
