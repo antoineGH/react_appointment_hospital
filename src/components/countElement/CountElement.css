@@ -1,0 +1,8 @@
+.badge {
+	background: rgb(108, 117, 125);
+}
+
+.col_count {
+	display: flex;
+	flex-direction: row;
+}

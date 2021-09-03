@@ -43,7 +43,12 @@ function App() {
 				<NavBar />
 				<Switch>
 					<Route path={routes.appointments.url}>
-						<AppointmentPage />
+						<AppointmentPage
+							appointments={appointments}
+							contacts={contacts}
+							addAppointment={addAppointment}
+							removeAppointment={removeAppointment}
+						/>
 					</Route>
 					<Route path={routes.doctors.url}>
 						<ContactPage contacts={contacts} addContact={addContact} removeContact={removeContact} />

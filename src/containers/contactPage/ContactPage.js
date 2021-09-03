@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import { Container, Row, Col, Button, Badge, Accordion } from 'react-bootstrap'
+import { Container, Row, Col } from 'react-bootstrap'
+import CountElement from '../../components/countElement/CountElement'
 
 export default function ContactPage(props) {
 	const { contacts, addContact, removeContact } = props
@@ -9,6 +10,11 @@ export default function ContactPage(props) {
 	const [phone, setPhone] = useState('')
 	const [email, setEmail] = useState('')
 	const [duplicate, setDuplicate] = useState(false)
+	const [countDoctors, setCountDoctors] = useState(contacts.length)
+
+	useEffect(() => {
+		setCountDoctors(contacts.length)
+	}, [contacts])
 
 	useEffect(() => {
 		contacts.forEach((contact) => {
@@ -38,12 +44,8 @@ export default function ContactPage(props) {
 
 	return (
 		<Container>
-			<Row>
-				<Button variant='primary'>
-					Profile <Badge bg='secondary'>9</Badge>
-					<span className='visually-hidden'>unread messages</span>
-				</Button>
-			</Row>
+			<CountElement title='Doctors' count={countDoctors} />
+
 			<Row></Row>
 		</Container>
 	)
