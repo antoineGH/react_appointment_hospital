@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Container } from 'react-bootstrap'
 import CountElement from '../../components/countElement/CountElement'
 import TileList from '../../components/tileList/TileList'
+import ModalConfirm from '../../components/modalConfirm/ModalConfirm'
 
 export default function ContactPage(props) {
 	const { contacts, addContact, removeContact } = props
@@ -12,6 +13,7 @@ export default function ContactPage(props) {
 	const [email, setEmail] = useState('')
 	const [duplicate, setDuplicate] = useState(false)
 	const [countDoctors, setCountDoctors] = useState(contacts.length)
+	const [show, setShow] = useState(true)
 
 	useEffect(() => {
 		setCountDoctors(contacts.length)
@@ -42,11 +44,22 @@ export default function ContactPage(props) {
 		setEmail('')
 	}
 
+	const handleClose = () => {
+		setShow(false)
+	}
+
 	return (
 		<Container className='container_contact'>
 			<CountElement title='Doctor' count={countDoctors} />
 			<TileList items={contacts} removeItems={removeContact} />
-			<button onClick={handleSubmit}>SUMBIT</button>
+			<ModalConfirm
+				show={show}
+				handleClose={handleClose}
+				header={'Delete Confirmation'}
+				body={'Are you sure you want to delete this item?'}
+				btnOne={'Cancel'}
+				btnTwo={'Delete'}
+			/>
 		</Container>
 	)
 }

@@ -1,0 +1,10 @@
+.btn-close {
+	display: none;
+}
+
+.btn_close_custom {
+	background-color: white;
+	border: none;
+	width: 25px;
+	height: 25px;
+}
