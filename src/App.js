@@ -21,6 +21,7 @@ function App() {
 	const [showModalAppointment, setShowModalAppointment] = useState(false)
 	const [showModalContact, setShowModalContact] = useState(false)
 	const [position, setPosition] = useState()
+	const [elemToDelete, setElemToDelete] = useState()
 
 	const addContact = (firstName, lastName, phone, email) => {
 		setContacts((existingContact) => [...existingContact, { firstName, lastName, phone, email }])
@@ -28,6 +29,7 @@ function App() {
 
 	const removeContact = (position) => {
 		setPosition(position)
+		setElemToDelete(contacts[position - 1].firstName + ' ' + contacts[position - 1].lastName)
 		setShowModalContact(true)
 	}
 
@@ -45,6 +47,7 @@ function App() {
 
 	const removeAppointment = (position) => {
 		setPosition(position)
+		setElemToDelete(appointments[position - 1].title)
 		setShowModalAppointment(true)
 	}
 
@@ -58,6 +61,7 @@ function App() {
 
 	const handleClose = () => {
 		setShowModalAppointment(false)
+		setShowModalContact(false)
 	}
 
 	return (
@@ -84,8 +88,15 @@ function App() {
 				handleClose={handleClose}
 				confirmRemoveAppointment={confirmRemoveAppointment}
 				position={position}
+				elemToDelete={elemToDelete}
 			/>
-			<ModalDeleteContact show={showModalContact} handleClose={handleClose} confirmRemoveContact={confirmRemoveContact} position={position} />
+			<ModalDeleteContact
+				show={showModalContact}
+				handleClose={handleClose}
+				confirmRemoveContact={confirmRemoveContact}
+				position={position}
+				elemToDelete={elemToDelete}
+			/>
 		</div>
 	)
 }

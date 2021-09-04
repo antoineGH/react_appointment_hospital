@@ -3,7 +3,7 @@ import { Modal, Button } from 'react-bootstrap'
 import './ModalConfirm.css'
 
 export default function ModalDeleteAppointement(props) {
-	const { show, handleClose, confirmRemoveAppointment, position } = props
+	const { show, handleClose, confirmRemoveAppointment, position, elemToDelete } = props
 
 	return (
 		<>
@@ -14,7 +14,7 @@ export default function ModalDeleteAppointement(props) {
 						&times;
 					</button>
 				</Modal.Header>
-				<Modal.Body>Are you sure you want to delete this item?</Modal.Body>
+				<Modal.Body>Are you sure you want to delete '{elemToDelete}'?</Modal.Body>
 				<Modal.Footer>
 					<Button variant='secondary' onClick={handleClose}>
 						Cancel
