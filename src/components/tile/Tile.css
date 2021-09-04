@@ -17,6 +17,10 @@
 	background-color: #dc3545;
 }
 
+button:focus {
+	outline: none;
+}
+
 .row_tile {
 	display: flex;
 	flex-direction: row;
