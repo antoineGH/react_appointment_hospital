@@ -1,24 +1,34 @@
-.position-absolute {
+.toast_container {
+	position: fixed;
+	margin: auto;
+	z-index: 1;
+	margin-top: 0.5rem;
+	margin-left: -1rem;
 	display: flex;
-	flex-direction: row;
 	justify-content: flex-end;
+	right: 1rem;
 }
 
-.p-3 {
-	padding: 0;
-	z-index: 2;
-}
-
-.toast.show {
-	position: absolute;
+.toast_show {
 	width: 100%;
 }
 
 .toast-header {
-	display: flex;
-	flex-direction: row;
+	width: 100%;
+	display: grid;
+	column-gap: 0.5rem;
+	grid-template: 1fr / 1fr 3fr 1fr 1fr;
 	margin: auto;
 	justify-content: space-between;
+}
+
+.toast-header strong {
+	display: flex;
+	justify-content: flex-start;
+}
+.toast-header small {
+	display: flex;
+	justify-content: flex-end;
 }
 
 .alert_custom {
@@ -33,4 +43,43 @@
 
 .alert_danger {
 	background-color: #dc3545;
+}
+
+.alert_success {
+	background-color: #198754;
+}
+
+.btn-close_custom {
+	width: 25px;
+	height: 25px;
+	background-color: white;
+	border: none;
+}
+
+.btn-close {
+	display: none;
+}
+
+@media (max-width: 576px) {
+	.toast_container {
+		width: 100%;
+		display: flex;
+		justify-content: center;
+		z-index: 1;
+		margin-left: auto;
+		margin: auto;
+		margin-top: 0.5rem;
+		position: relative;
+		right: initial;
+	}
+
+	.toast.show {
+		display: block;
+		margin: 0.6rem 0.5rem;
+		width: 100%;
+	}
+}
+
+.progress {
+	border-radius: initial;
 }

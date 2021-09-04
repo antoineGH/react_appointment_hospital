@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react'
 import { Container } from 'react-bootstrap'
 import CountElement from '../../components/countElement/CountElement'
 import TileList from '../../components/tileList/TileList'
-import AlertToasts from '../../components/alertToasts/AlertToasts'
 
 export default function ContactPage(props) {
-	const { contacts, addContact, removeContact } = props
+	const { contacts, addContact, removeContact, showAlert, setShowAlert, alertTitle, setAlertTitle, alertMessage, setAlertMessage, alertTime, setAlertTime } =
+		props
 
 	const [firstName, setFirstName] = useState('')
 	const [lastName, setLastName] = useState('')
@@ -13,10 +13,6 @@ export default function ContactPage(props) {
 	const [email, setEmail] = useState('')
 	const [duplicate, setDuplicate] = useState(false)
 	const [countDoctors, setCountDoctors] = useState(contacts.length)
-	const [showAlert, setShowAlert] = useState(false)
-	const [alertTitle, setAlertTitle] = useState('')
-	const [alertMessage, setAlertMessage] = useState('')
-	const [alertTime, setAlertTime] = useState('')
 
 	useEffect(() => {
 		setCountDoctors(contacts.length)
@@ -33,18 +29,18 @@ export default function ContactPage(props) {
 	const handleSubmit = (e) => {
 		e.preventDefault()
 		if (duplicate) {
-			setAlertTitle('Error')
+			setAlertTitle('danger')
 			setAlertMessage('Doctor already exists')
 			setAlertTime('just now')
 			setShowAlert(true)
 			setTimeout(() => {
 				setShowAlert(false)
-			}, 5000)
+			}, 50000)
 			setDuplicate(false)
 			return
 		}
 		if (!firstName || !lastName || !phone || !email) {
-			setAlertTitle('Warning')
+			setAlertTitle('warning')
 			setAlertMessage('Missing fields')
 			setAlertTime('just now')
 			setShowAlert(true)
@@ -61,15 +57,10 @@ export default function ContactPage(props) {
 		setEmail('')
 	}
 
-	const toggleShowAlert = () => {
-		setShowAlert(!showAlert)
-	}
-
 	return (
 		<Container className='container_contact'>
 			<CountElement title='Doctor' count={countDoctors} />
 			<TileList items={contacts} removeItems={removeContact} />
-			<AlertToasts show={showAlert} toggleShowAlert={toggleShowAlert} title={alertTitle} time={alertTime} message={alertMessage} />
 			<button onClick={handleSubmit}>SUMBIT</button>
 		</Container>
 	)
