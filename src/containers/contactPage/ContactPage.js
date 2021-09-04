@@ -4,8 +4,7 @@ import CountElement from '../../components/countElement/CountElement'
 import TileList from '../../components/tileList/TileList'
 
 export default function ContactPage(props) {
-	const { contacts, addContact, removeContact, showAlert, setShowAlert, alertTitle, setAlertTitle, alertMessage, setAlertMessage, alertTime, setAlertTime } =
-		props
+	const { contacts, addContact, removeContact } = props
 
 	const [firstName, setFirstName] = useState('')
 	const [lastName, setLastName] = useState('')
@@ -29,25 +28,11 @@ export default function ContactPage(props) {
 	const handleSubmit = (e) => {
 		e.preventDefault()
 		if (duplicate) {
-			setAlertTitle('danger')
-			setAlertMessage('Doctor already exists')
-			setAlertTime('just now')
-			setShowAlert(true)
-			setTimeout(() => {
-				setShowAlert(false)
-			}, 50000)
-			setDuplicate(false)
+			alert('Doctor already exists')
 			return
 		}
 		if (!firstName || !lastName || !phone || !email) {
-			setAlertTitle('warning')
-			setAlertMessage('Missing fields')
-			setAlertTime('just now')
-			setShowAlert(true)
-			setTimeout(() => {
-				setShowAlert(false)
-			}, 5000)
-			setDuplicate(false)
+			alert('Missing fields')
 			return
 		}
 		addContact(firstName, lastName, phone, email)

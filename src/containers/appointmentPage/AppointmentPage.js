@@ -1,24 +1,10 @@
 import React, { useState, useEffect } from 'react'
-import { Container, Row, Col } from 'react-bootstrap'
+import { Container } from 'react-bootstrap'
 import CountElement from '../../components/countElement/CountElement'
 import TileList from '../../components/tileList/TileList'
-import AlertToasts from '../../components/alertToasts/AlertToasts'
 
 export default function AppointmentPage(props) {
-	const {
-		appointments,
-		contacts,
-		addAppointment,
-		removeAppointment,
-		showAlert,
-		setShowAlert,
-		alertTitle,
-		setAlertTitle,
-		alertMessage,
-		setAlertMessage,
-		alertTime,
-		setAlertTime,
-	} = props
+	const { appointments, contacts, addAppointment, removeAppointment } = props
 
 	const [title, setTitle] = useState('')
 	const [contact, setContact] = useState('')
@@ -32,22 +18,12 @@ export default function AppointmentPage(props) {
 
 	const handleSubmit = (e) => {
 		e.preventDefault()
-		if (!title || !contact || !date || !time) {
-			setAlertTitle('warning')
-			setAlertMessage('Missing fields')
-			setAlertTime('just now')
-			setShowAlert(true)
-			setTimeout(() => {
-				setShowAlert(false)
-			}, 3000)
-		}
 	}
 
 	return (
 		<Container fluid className='container_appointment'>
 			<CountElement title='Appointment' count={countAppointments} />
 			<TileList items={appointments} removeItems={removeAppointment} />
-			<button onClick={handleSubmit}>SUMBIT</button>
 		</Container>
 	)
 }
