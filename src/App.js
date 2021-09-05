@@ -101,20 +101,24 @@ function App() {
 				</Switch>
 				<Redirect exact from='/' to={routes.appointments.url} />
 			</Router>
-			<ModalDeleteAppointement
-				show={showModalAppointment}
-				handleClose={handleClose}
-				confirmRemoveAppointment={confirmRemoveAppointment}
-				position={position}
-				elemToDelete={elemToDelete}
-			/>
-			<ModalDeleteContact
-				show={showModalContact}
-				handleClose={handleClose}
-				confirmRemoveContact={confirmRemoveContact}
-				position={position}
-				elemToDelete={elemToDelete}
-			/>
+			{showModalAppointment && (
+				<ModalDeleteAppointement
+					show={showModalAppointment}
+					handleClose={handleClose}
+					confirmRemoveAppointment={confirmRemoveAppointment}
+					position={position}
+					elemToDelete={elemToDelete}
+				/>
+			)}
+			{showModalContact && (
+				<ModalDeleteContact
+					show={showModalContact}
+					handleClose={handleClose}
+					confirmRemoveContact={confirmRemoveContact}
+					position={position}
+					elemToDelete={elemToDelete}
+				/>
+			)}
 		</div>
 	)
 }

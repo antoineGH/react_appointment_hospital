@@ -1,5 +1,6 @@
 import React from 'react'
 import { Offcanvas } from 'react-bootstrap'
+import './OffCanvasForm.css'
 
 export default function OffCanvasForm(props) {
 	const { showCanvas, handleCloseCanvas } = props
