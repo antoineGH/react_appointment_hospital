@@ -61,7 +61,7 @@ export default function ContactPage(props) {
 			</Row>
 			<TileList items={contacts} removeItems={removeContact} />
 			<OffCanvasForm
-				title={'Add Doctor'}
+				titleCanvas={'Add Doctor'}
 				typeForm={'Contact'}
 				showCanvas={showCanvas}
 				handleCloseCanvas={handleCloseCanvas}

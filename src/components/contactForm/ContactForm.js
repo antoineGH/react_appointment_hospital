@@ -30,7 +30,7 @@ export default function ContactForm(props) {
 			</Row>
 			<Row className='row_submit'>
 				<Button variant='secondary' type='submit'>
-					Add Contact
+					Add Doctor
 				</Button>
 			</Row>
 		</Form>
