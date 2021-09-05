@@ -42,4 +42,8 @@ button:focus {
 	.row_tile {
 		flex-direction: column;
 	}
+	.remove-button {
+		margin: auto;
+		margin-top: 0.5rem;
+	}
 }

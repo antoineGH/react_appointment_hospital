@@ -7,7 +7,7 @@ export default function ModalDeleteAppointement(props) {
 
 	return (
 		<>
-			<Modal show={show} onHide={handleClose} size='lg' aria-labelledby='contained-modal-title-vcenter' centered>
+			<Modal show={show} onHide={handleClose} size='lg'>
 				<Modal.Header closeButton>
 					<Modal.Title>Delete Confirmation</Modal.Title>
 					<button className='btn_close_custom' onClick={handleClose}>
