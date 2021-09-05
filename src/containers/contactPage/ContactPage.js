@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Container } from 'react-bootstrap'
+import { Container, Row, Col, Button } from 'react-bootstrap'
 import CountElement from '../../components/countElement/CountElement'
 import TileList from '../../components/tileList/TileList'
 import OffCanvasForm from '../../components/offCanvasForm/OffCanvasForm'
@@ -41,20 +41,40 @@ export default function ContactPage(props) {
 		setLastName('')
 		setPhone('')
 		setEmail('')
+		handleCloseCanvas()
 	}
 
 	// CANVAS
-	const [showCanvas, setShowCanvas] = useState(true)
+	const [showCanvas, setShowCanvas] = useState(false)
 	const handleCloseCanvas = () => setShowCanvas(false)
 	const handleShowCanvas = () => setShowCanvas(true)
-	const toggleCanvas = () => setShowCanvas(!showCanvas)
 
 	return (
 		<Container className='container_contact'>
-			<CountElement title='Doctor' count={countDoctors} />
+			<Row className='mt-3'>
+				<Col className='col_count'>
+					<CountElement title='Doctor' count={countDoctors} />
+					<Button className='ml-2' variant='dark' onClick={handleShowCanvas}>
+						&#43; Add Doctor
+					</Button>
+				</Col>
+			</Row>
 			<TileList items={contacts} removeItems={removeContact} />
-			<OffCanvasForm title={'Add Contact'} typeForm={'Contact'} showCanvas={showCanvas} handleCloseCanvas={handleCloseCanvas} />
-			<button onClick={toggleCanvas}>Toggle</button>
+			<OffCanvasForm
+				title={'Add Doctor'}
+				typeForm={'Contact'}
+				showCanvas={showCanvas}
+				handleCloseCanvas={handleCloseCanvas}
+				firstName={firstName}
+				setFirstName={setFirstName}
+				lastName={lastName}
+				setLastName={setLastName}
+				phone={phone}
+				setPhone={setPhone}
+				email={email}
+				setEmail={setEmail}
+				handleSubmit={handleSubmit}
+			/>
 		</Container>
 	)
 }

@@ -6,14 +6,10 @@ export default function CountElement(props) {
 	const { title, count } = props
 	return (
 		<>
-			<Row className='mt-3'>
-				<Col className='col_count'>
-					<Button variant='secondary'>
-						{title}
-						{count > 0 && 's'} <Badge className='badge'>{count}</Badge>
-					</Button>
-				</Col>
-			</Row>
+			<Button variant='secondary'>
+				{title}
+				{count > 0 && 's'} <Badge className='badge'>{count}</Badge>
+			</Button>
 		</>
 	)
 }

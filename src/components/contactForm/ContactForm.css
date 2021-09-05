@@ -1,0 +1,10 @@
+.row_submit {
+	display: flex;
+	justify-content: center;
+	width: 100%;
+	margin-top: 3rem;
+}
+
+form .row {
+	padding: 0rem 2rem;
+}

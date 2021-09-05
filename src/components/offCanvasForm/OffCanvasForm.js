@@ -5,7 +5,8 @@ import AppointmentForm from '../appointmentForm/AppointmentForm'
 import ContactForm from '../contactForm/ContactForm'
 
 export default function OffCanvasForm(props) {
-	const { title, typeForm, showCanvas, handleCloseCanvas } = props
+	const { title, typeForm, showCanvas, handleCloseCanvas, firstName, setFirstName, lastName, setLastName, phone, setPhone, email, setEmail, handleSubmit } =
+		props
 	return (
 		<Offcanvas show={showCanvas} onHide={handleCloseCanvas}>
 			<Offcanvas.Header closeButton>
@@ -14,7 +15,23 @@ export default function OffCanvasForm(props) {
 					&times;
 				</button>
 			</Offcanvas.Header>
-			<Offcanvas.Body>{typeForm === 'Appointment' ? <AppointmentForm /> : <ContactForm />}</Offcanvas.Body>
+			<Offcanvas.Body>
+				{typeForm === 'Appointment' ? (
+					<AppointmentForm />
+				) : (
+					<ContactForm
+						firstName={firstName}
+						setFirstName={setFirstName}
+						lastName={lastName}
+						setLastName={setLastName}
+						phone={phone}
+						setPhone={setPhone}
+						email={email}
+						setEmail={setEmail}
+						handleSubmit={handleSubmit}
+					/>
+				)}
+			</Offcanvas.Body>
 		</Offcanvas>
 	)
 }
