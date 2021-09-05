@@ -3,6 +3,7 @@ import { Container, Row, Col, Button } from 'react-bootstrap'
 import CountElement from '../../components/countElement/CountElement'
 import TileList from '../../components/tileList/TileList'
 import OffCanvasForm from '../../components/offCanvasForm/OffCanvasForm'
+import CustomToast from '../../components/customToast/CustomToast'
 
 export default function AppointmentPage(props) {
 	const { appointments, contacts, addAppointment, removeAppointment } = props
@@ -36,6 +37,10 @@ export default function AppointmentPage(props) {
 	const handleCloseCanvas = () => setShowCanvas(false)
 	const handleShowCanvas = () => setShowCanvas(true)
 
+	// TOASTS
+	const [showToast, setShowToast] = useState(true)
+	const toggleToast = () => setShowToast(!showToast)
+
 	return (
 		<Container fluid className='container_appointment'>
 			<Row className='mt-3'>
@@ -62,6 +67,7 @@ export default function AppointmentPage(props) {
 				setTime={setTime}
 				handleSubmit={handleSubmit}
 			/>
+			<CustomToast showToast={showToast} toggleToast={toggleToast} toastType={'danger'} toastTime={'just now'} toastBody={'Toast Message'} />
 		</Container>
 	)
 }
