@@ -35,8 +35,8 @@ function App() {
 
 	// APPPOINTMENTS
 	const [appointments, setAppointments] = useState([
-		{ title: 'Appointment Dentist', contact: 'Antoine', date: '02/09/21', time: '19:48' },
-		{ title: 'Appointment Bank', contact: 'Bastien', date: '04/10/21', time: '22:30' },
+		{ title: 'Appointment Dentist', contact: 'Antoine', date: '2021-09-17', time: '19:48' },
+		{ title: 'Appointment Bank', contact: 'Bastien', date: '2021-09-17', time: '22:30' },
 	])
 
 	const addAppointment = (title, contact, date, time) => {
