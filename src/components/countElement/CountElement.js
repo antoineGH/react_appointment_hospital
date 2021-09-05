@@ -1,5 +1,5 @@
 import React from 'react'
-import { Row, Col, Button, Badge } from 'react-bootstrap'
+import { Button, Badge } from 'react-bootstrap'
 import './CountElement.css'
 
 export default function CountElement(props) {
