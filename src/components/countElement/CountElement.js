@@ -8,7 +8,7 @@ export default function CountElement(props) {
 		<>
 			<Row className='mt-3'>
 				<Col className='col_count'>
-					<Button variant='primary'>
+					<Button variant='secondary'>
 						{title}
 						{count > 0 && 's'} <Badge className='badge'>{count}</Badge>
 					</Button>

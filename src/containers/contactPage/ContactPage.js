@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Container } from 'react-bootstrap'
 import CountElement from '../../components/countElement/CountElement'
 import TileList from '../../components/tileList/TileList'
+import OffCanvasForm from '../../components/offCanvasForm/OffCanvasForm'
 
 export default function ContactPage(props) {
 	const { contacts, addContact, removeContact } = props
@@ -42,10 +43,18 @@ export default function ContactPage(props) {
 		setEmail('')
 	}
 
+	// CANVAS
+	const [showCanvas, setShowCanvas] = useState(true)
+	const handleCloseCanvas = () => setShowCanvas(false)
+	const handleShowCanvas = () => setShowCanvas(true)
+	const toggleCanvas = () => setShowCanvas(!showCanvas)
+
 	return (
 		<Container className='container_contact'>
 			<CountElement title='Doctor' count={countDoctors} />
 			<TileList items={contacts} removeItems={removeContact} />
+			<OffCanvasForm title={'Add Contact'} typeForm={'Contact'} showCanvas={showCanvas} handleCloseCanvas={handleCloseCanvas} />
+			<button onClick={toggleCanvas}>Toggle</button>
 		</Container>
 	)
 }

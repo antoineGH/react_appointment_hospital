@@ -19,10 +19,11 @@
 .offcanvas-start {
 	top: 0;
 	left: 0;
-	width: 400px;
+	width: 50vw;
 	border-right: 1px solid rgba(0, 0, 0, 0.2);
 	transform: translateX(-100%);
 }
+
 .offcanvas {
 	position: fixed;
 	bottom: 0;
@@ -48,4 +49,21 @@
 	flex-grow: 1;
 	padding: 1rem;
 	overflow-y: auto;
+}
+
+.offcanvas-header {
+	display: flex;
+}
+
+.offcanvas-title {
+	display: flex;
+	width: 100%;
+	margin: auto;
+	justify-content: center;
+}
+
+@media (max-width: 1200px) {
+	.offcanvas-start {
+		width: 100vw;
+	}
 }

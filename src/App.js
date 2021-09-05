@@ -6,7 +6,6 @@ import ContactPage from './containers/contactPage/ContactPage'
 import AppointmentPage from './containers/appointmentPage/AppointmentPage'
 import ModalDeleteAppointement from './components/modalConfirm/ModalDeleteAppointement'
 import ModalDeleteContact from './components/modalConfirm/ModalDeleteContact'
-import OffCanvasForm from './components/offCanvasForm/OffCanvasForm'
 import './App.css'
 
 function App() {
@@ -73,18 +72,9 @@ function App() {
 		setShowModalContact(false)
 	}
 
-	// CANVAS
-	const [showCanvas, setShowCanvas] = useState(false)
-
-	const handleCloseCanvas = () => setShowCanvas(false)
-	const handleShowCanvas = () => setShowCanvas(true)
-	const toggleCanvas = () => setShowCanvas(!showCanvas)
-
 	return (
 		<div className='App'>
-			<OffCanvasForm showCanvas={showCanvas} handleCloseCanvas={handleCloseCanvas} />
 			<Router>
-				<button onClick={toggleCanvas}>TOGGLE CANVAS</button>
 				<NavBar />
 				<Switch>
 					<Route path={routes.appointments.url}>
@@ -101,24 +91,20 @@ function App() {
 				</Switch>
 				<Redirect exact from='/' to={routes.appointments.url} />
 			</Router>
-			{showModalAppointment && (
-				<ModalDeleteAppointement
-					show={showModalAppointment}
-					handleClose={handleClose}
-					confirmRemoveAppointment={confirmRemoveAppointment}
-					position={position}
-					elemToDelete={elemToDelete}
-				/>
-			)}
-			{showModalContact && (
-				<ModalDeleteContact
-					show={showModalContact}
-					handleClose={handleClose}
-					confirmRemoveContact={confirmRemoveContact}
-					position={position}
-					elemToDelete={elemToDelete}
-				/>
-			)}
+			<ModalDeleteAppointement
+				show={showModalAppointment}
+				handleClose={handleClose}
+				confirmRemoveAppointment={confirmRemoveAppointment}
+				position={position}
+				elemToDelete={elemToDelete}
+			/>
+			<ModalDeleteContact
+				show={showModalContact}
+				handleClose={handleClose}
+				confirmRemoveContact={confirmRemoveContact}
+				position={position}
+				elemToDelete={elemToDelete}
+			/>
 		</div>
 	)
 }
