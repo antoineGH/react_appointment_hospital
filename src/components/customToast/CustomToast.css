@@ -5,10 +5,18 @@
 	margin: auto;
 }
 
+.toast.show {
+	display: block;
+	opacity: 1;
+	position: absolute;
+	top: 1rem;
+	min-width: 275px;
+}
+
 .toast-header {
 	display: grid;
-	grid-template-columns: 1fr 2fr 1fr;
-	gap: 10px;
+	grid-template-columns: 0.7fr 2fr 1fr 0.7fr;
+	gap: 0px;
 	width: 100%;
 }
 
@@ -32,8 +40,19 @@
 
 .progress {
 	border-radius: initial;
+	height: 0.5rem;
 }
 
-.progress-bar {
-	height: 50%;
+.btn_close_custom {
+	background-color: white;
+	border: none;
+	width: 25px;
+	height: 25px;
+	display: flex;
+	justify-self: flex-end;
+}
+
+.me-auto {
+	display: flex;
+	justify-self: flex-start;
 }

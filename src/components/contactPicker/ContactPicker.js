@@ -6,8 +6,9 @@ export default function ContactPicker(props) {
 
 	return (
 		<Form.Group as={Col} controlId='formGridTitle'>
+			<Form.Label>Doctor</Form.Label>
 			<Form.Select aria-label='Default select' onChange={(e) => onChange(e)}>
-				<option value='' selected disabled>
+				<option value='' defaultValue disabled>
 					Select Doctor
 				</option>
 				{contacts.map((contact, count) => {

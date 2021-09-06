@@ -18,18 +18,22 @@ export default function CustomToast(props) {
 		if (count === 100) {
 			setCounter()
 			setTimeout(() => {
-				toggleToast()
+				// toggleToast()
 			}, 500)
 		}
 	}, [count, setCounter, toggleToast])
 
 	return (
 		<Row className='row_toast'>
-			<Toast show={showToast} onClose={toggleToast} delay={3000} autohide>
+			{/* <Toast show={showToast} onClose={toggleToast} delay={3000} autohide> */}
+			<Toast show={showToast} onClose={toggleToast} animation={false}>
 				<Toast.Header>
 					<div className={typeAlert[toastType].class} alt=''></div>
 					<strong className='me-auto'>{typeAlert[toastType].text}</strong>
 					<small>{toastTime}</small>
+					<button className='btn_close_custom' onClick={toggleToast}>
+						&times;
+					</button>
 				</Toast.Header>
 				<Toast.Body>{toastBody}</Toast.Body>
 				<ProgressBar animated now={count} variant={typeAlert[toastType].progress} />
