@@ -6,3 +6,14 @@
 	display: flex;
 	flex-direction: row;
 }
+
+button {
+	background-color: #6c757d;
+	border: none;
+	transition: linear;
+}
+
+button:focus {
+	box-shadow: initial;
+	outline: none;
+}

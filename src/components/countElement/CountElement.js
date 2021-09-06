@@ -1,15 +1,23 @@
 import React from 'react'
-import { Button, Badge } from 'react-bootstrap'
+import { Button, Badge, OverlayTrigger, Tooltip } from 'react-bootstrap'
 import './CountElement.css'
 
 export default function CountElement(props) {
 	const { title, count } = props
+
+	const renderTooltip = (props) => (
+		<Tooltip id='button-tooltip' {...props}>
+			{count} Appointement{count > 1 && 's'}
+		</Tooltip>
+	)
+
 	return (
 		<>
-			<Button variant='secondary'>
-				{title}
-				{count > 0 && 's'} <Badge className='badge'>{count}</Badge>
-			</Button>
+			<OverlayTrigger placement='bottom' delay={{ show: 250, hide: 400 }} overlay={renderTooltip}>
+				<Button variant='secondary'>
+					<Badge className='badge'>{count}</Badge>
+				</Button>
+			</OverlayTrigger>
 		</>
 	)
 }
