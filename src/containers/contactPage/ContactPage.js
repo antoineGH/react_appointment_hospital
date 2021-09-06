@@ -3,6 +3,7 @@ import { Container, Row, Col, Button } from 'react-bootstrap'
 import CountElement from '../../components/countElement/CountElement'
 import TileList from '../../components/tileList/TileList'
 import OffCanvasForm from '../../components/offCanvasForm/OffCanvasForm'
+import CustomToast from '../../components/customToast/CustomToast'
 
 export default function ContactPage(props) {
 	const { contacts, addContact, removeContact } = props
@@ -29,11 +30,18 @@ export default function ContactPage(props) {
 	const handleSubmit = (e) => {
 		e.preventDefault()
 		if (duplicate) {
-			alert('Doctor already exists')
+			setToastBody('Doctor already exists')
+			setToastType('warning')
+			toggleToast()
+			setFirstName('')
+			setLastName('')
+			setDuplicate(false)
 			return
 		}
 		if (!firstName || !lastName || !phone || !email) {
-			alert('Missing fields')
+			setToastBody('Missing fields')
+			setToastType('warning')
+			toggleToast()
 			return
 		}
 		addContact(firstName, lastName, phone, email)
@@ -42,7 +50,16 @@ export default function ContactPage(props) {
 		setPhone('')
 		setEmail('')
 		handleCloseCanvas()
+		setToastBody('Contact added')
+		setToastType('success')
+		toggleToast()
 	}
+
+	// TOASTS
+	const [showToast, setShowToast] = useState(false)
+	const [toastBody, setToastBody] = useState('')
+	const [toastType, setToastType] = useState('')
+	const toggleToast = () => setShowToast(!showToast)
 
 	// CANVAS
 	const [showCanvas, setShowCanvas] = useState(false)
@@ -75,6 +92,7 @@ export default function ContactPage(props) {
 				setEmail={setEmail}
 				handleSubmit={handleSubmit}
 			/>
+			{showToast && <CustomToast showToast={showToast} toggleToast={toggleToast} toastType={toastType} toastTime={'just now'} toastBody={toastBody} />}
 		</Container>
 	)
 }

@@ -6,6 +6,7 @@ import ContactPage from './containers/contactPage/ContactPage'
 import AppointmentPage from './containers/appointmentPage/AppointmentPage'
 import ModalDeleteAppointement from './components/modalConfirm/ModalDeleteAppointement'
 import ModalDeleteContact from './components/modalConfirm/ModalDeleteContact'
+import CustomToast from './components/customToast/CustomToast'
 import './App.css'
 
 function App() {
@@ -31,6 +32,8 @@ function App() {
 		setContacts(copyContacts)
 		setPosition()
 		setShowModalContact(false)
+		setToastBody('Doctor removed')
+		setShowToast(true)
 	}
 
 	// APPPOINTMENTS
@@ -59,6 +62,8 @@ function App() {
 		setAppointments(copyAppointments)
 		setPosition()
 		setShowModalAppointment(false)
+		setToastBody('Appointment removed')
+		setShowToast(true)
 	}
 
 	// MODALS
@@ -71,6 +76,11 @@ function App() {
 		setShowModalAppointment(false)
 		setShowModalContact(false)
 	}
+
+	// TOASTS
+	const [showToast, setShowToast] = useState(false)
+	const [toastBody, setToastBody] = useState('')
+	const toggleToast = () => setShowToast(!showToast)
 
 	return (
 		<div className='App'>
@@ -105,6 +115,7 @@ function App() {
 				position={position}
 				elemToDelete={elemToDelete}
 			/>
+			{showToast && <CustomToast showToast={showToast} toggleToast={toggleToast} toastType={'success'} toastTime={'just now'} toastBody={toastBody} />}
 		</div>
 	)
 }

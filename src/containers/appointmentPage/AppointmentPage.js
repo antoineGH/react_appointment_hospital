@@ -21,7 +21,9 @@ export default function AppointmentPage(props) {
 	const handleSubmit = (e) => {
 		e.preventDefault()
 		if (!title || !contact || !date || !time) {
-			alert('Missing Fields')
+			setToastBody('Missing Fields')
+			setToastType('warning')
+			toggleToast()
 			return
 		}
 		addAppointment(title, contact, date, time)
@@ -30,6 +32,9 @@ export default function AppointmentPage(props) {
 		setDate('')
 		setTime('')
 		handleCloseCanvas()
+		setToastBody('Appointement added')
+		setToastType('success')
+		toggleToast()
 	}
 
 	// CANVAS
@@ -38,7 +43,9 @@ export default function AppointmentPage(props) {
 	const handleShowCanvas = () => setShowCanvas(true)
 
 	// TOASTS
-	const [showToast, setShowToast] = useState(true)
+	const [showToast, setShowToast] = useState(false)
+	const [toastBody, setToastBody] = useState('')
+	const [toastType, setToastType] = useState('')
 	const toggleToast = () => setShowToast(!showToast)
 
 	return (
@@ -67,7 +74,7 @@ export default function AppointmentPage(props) {
 				setTime={setTime}
 				handleSubmit={handleSubmit}
 			/>
-			<CustomToast showToast={showToast} toggleToast={toggleToast} toastType={'danger'} toastTime={'just now'} toastBody={'Toast Message'} />
+			{showToast && <CustomToast showToast={showToast} toggleToast={toggleToast} toastType={toastType} toastTime={'just now'} toastBody={toastBody} />}
 		</Container>
 	)
 }

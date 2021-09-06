@@ -18,15 +18,14 @@ export default function CustomToast(props) {
 		if (count === 100) {
 			setCounter()
 			setTimeout(() => {
-				// toggleToast()
+				toggleToast()
 			}, 500)
 		}
 	}, [count, setCounter, toggleToast])
 
 	return (
 		<Row className='row_toast'>
-			{/* <Toast show={showToast} onClose={toggleToast} delay={3000} autohide> */}
-			<Toast show={showToast} onClose={toggleToast} animation={false}>
+			<Toast show={showToast} onClose={toggleToast} animation={false} delay={3000} autohide>
 				<Toast.Header>
 					<div className={typeAlert[toastType].class} alt=''></div>
 					<strong className='me-auto'>{typeAlert[toastType].text}</strong>
