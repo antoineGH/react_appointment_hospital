@@ -7,7 +7,8 @@ export default function CountElement(props) {
 
 	const renderTooltip = (props) => (
 		<Tooltip id='button-tooltip' {...props}>
-			{count} Appointement{count > 1 && 's'}
+			{count} {title}
+			{count > 1 && 's'}
 		</Tooltip>
 	)
 

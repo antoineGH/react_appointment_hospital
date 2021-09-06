@@ -8,3 +8,9 @@
 form .row {
 	padding: 0rem 2rem;
 }
+
+@media (max-width: 576px) {
+	form .row {
+		padding: 0rem 1rem;
+	}
+}
