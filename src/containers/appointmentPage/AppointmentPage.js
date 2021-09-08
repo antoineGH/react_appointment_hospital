@@ -12,7 +12,16 @@ import { fas } from '@fortawesome/free-solid-svg-icons'
 library.add(fas)
 
 export default function AppointmentPage(props) {
-	const { appointments, contacts, addAppointment, removeAppointment } = props
+	const {
+		appointments,
+		contacts,
+		addAppointment,
+		removeAppointment,
+		filteredAppointments,
+		setFilteredAppointments,
+		searchAppointments,
+		setSearchAppointments,
+	} = props
 
 	const [title, setTitle] = useState('')
 	const [contact, setContact] = useState('')
@@ -64,7 +73,7 @@ export default function AppointmentPage(props) {
 					</Button>
 				</Col>
 				<Col>
-					<SearchBar type='appointments' />
+					<SearchBar type='appointments' searchAppointments={searchAppointments} setSearchAppointments={setSearchAppointments} />
 				</Col>
 			</Row>
 			<TileList items={appointments} removeItems={removeAppointment} />

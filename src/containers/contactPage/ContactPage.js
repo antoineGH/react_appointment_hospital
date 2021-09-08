@@ -5,6 +5,10 @@ import TileList from '../../components/tileList/TileList'
 import OffCanvasForm from '../../components/offCanvasForm/OffCanvasForm'
 import CustomToast from '../../components/customToast/CustomToast'
 import './ContactPage.css'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { fas } from '@fortawesome/free-solid-svg-icons'
+library.add(fas)
 
 export default function ContactPage(props) {
 	const { contacts, addContact, removeContact } = props
@@ -72,7 +76,9 @@ export default function ContactPage(props) {
 			<Row className='mt-3'>
 				<Col className='col_count'>
 					<CountElement title='Doctor' count={countDoctors} />
-					<Button className='ml-2 btn_add' variant='dark' onClick={handleShowCanvas}></Button>
+					<Button className='ml-2 btn_add' variant='dark' onClick={handleShowCanvas}>
+						<FontAwesomeIcon className='ml-2' size='1x' icon={['fas', 'plus-square']} />
+					</Button>
 				</Col>
 			</Row>
 			<TileList items={contacts} removeItems={removeContact} />

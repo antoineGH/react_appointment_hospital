@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom'
 import { routes } from './utils/routes'
 import NavBar from './components/navBar/NavBar'
@@ -41,6 +41,17 @@ function App() {
 		{ title: 'Appointment Dentist', contact: 'Antoine', date: '2021-09-17', time: '19:48' },
 		{ title: 'Appointment Bank', contact: 'Bastien', date: '2021-09-17', time: '22:30' },
 	])
+	const [searchAppointments, setSearchAppointments] = useState('')
+	const [filteredAppointments, setFilteredAppointments] = useState(appointments)
+
+	useEffect(() => {
+		console.log('Search is being made')
+		setFilteredAppointments(
+			appointments.filter((appointment) => {
+				return appointment.title.toLocaleLowerCase().includes(searchAppointments.toLocaleLowerCase())
+			})
+		)
+	}, [searchAppointments, appointments])
 
 	const addAppointment = (title, contact, date, time) => {
 		setAppointments((existingAppointment) => [...existingAppointment, { title, contact, date, time }])
@@ -89,10 +100,14 @@ function App() {
 				<Switch>
 					<Route path={routes.appointments.url}>
 						<AppointmentPage
-							appointments={appointments}
+							appointments={filteredAppointments}
 							contacts={contacts}
 							addAppointment={addAppointment}
 							removeAppointment={removeAppointment}
+							filteredAppointments={filteredAppointments}
+							setFilteredAppointments={setFilteredAppointments}
+							searchAppointments={searchAppointments}
+							setSearchAppointments={setSearchAppointments}
 						/>
 					</Route>
 					<Route path={routes.doctors.url}>
