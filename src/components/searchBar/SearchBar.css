@@ -1,0 +1,14 @@
+.input_search {
+	background-color: pink;
+	display: flex;
+	flex-direction: row;
+	align-self: center;
+	align-items: center;
+}
+
+.input_search .form-control {
+}
+
+.input_search .svg {
+	position: absolute;
+}
