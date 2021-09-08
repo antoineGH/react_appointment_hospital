@@ -7,6 +7,7 @@ import AppointmentPage from './containers/appointmentPage/AppointmentPage'
 import ModalDeleteAppointement from './components/modalConfirm/ModalDeleteAppointement'
 import ModalDeleteContact from './components/modalConfirm/ModalDeleteContact'
 import CustomToast from './components/customToast/CustomToast'
+import generateId from './utils/generateId'
 import './App.css'
 import { contactList, appointmentList } from './constants/constants'
 
@@ -48,7 +49,7 @@ function App() {
 	}, [searchContacts, contacts])
 
 	const addContact = (firstName, lastName, phone, email) => {
-		setContacts((existingContact) => [...existingContact, { firstName, lastName, phone, email }])
+		setContacts((existingContact) => [...existingContact, { id: generateId({ firstName, lastName, phone, email }), firstName, lastName, phone, email }])
 	}
 
 	const removeContact = (contactId) => {
@@ -70,7 +71,7 @@ function App() {
 	}
 
 	const addAppointment = (title, contact, date, time) => {
-		setAppointments((existingAppointment) => [...existingAppointment, { title, contact, date, time }])
+		setAppointments((existingAppointment) => [...existingAppointment, { id: generateId({ title, contact, date, time }), title, contact, date, time }])
 	}
 
 	const removeAppointment = (appointmentId) => {
