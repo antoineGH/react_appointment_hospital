@@ -12,21 +12,21 @@ import { contactList, appointmentList } from './constants/constants'
 
 function App() {
 	const [contacts, setContacts] = useState(contactList)
+	const [searchContacts, setSearchContacts] = useState('')
+	const [filteredContacts, setFilteredContacts] = useState(contacts)
+	const [showModalContact, setShowModalContact] = useState(false)
+	const [contactId, setContactId] = useState()
+
 	const [appointments, setAppointments] = useState(appointmentList)
 	const [searchAppointments, setSearchAppointments] = useState('')
-	const [searchContacts, setSearchContacts] = useState('')
 	const [filteredAppointments, setFilteredAppointments] = useState(appointments)
-	const [filteredContacts, setFilteredContacts] = useState(contacts)
-
 	const [showModalAppointment, setShowModalAppointment] = useState(false)
-	const [showModalContact, setShowModalContact] = useState(false)
 	const [appointmentId, setAppointmentId] = useState()
-	const [contactId, setContactId] = useState()
+
 	const [elemToDelete, setElemToDelete] = useState()
 
 	const [showToast, setShowToast] = useState(false)
 	const [toastBody, setToastBody] = useState('')
-	const toggleToast = () => setShowToast(!showToast)
 
 	useEffect(() => {
 		setFilteredAppointments(
@@ -95,6 +95,8 @@ function App() {
 		setShowModalAppointment(false)
 		setShowModalContact(false)
 	}
+
+	const toggleToast = () => setShowToast(!showToast)
 
 	return (
 		<div className='App'>
