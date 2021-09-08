@@ -4,6 +4,7 @@ import CountElement from '../../components/countElement/CountElement'
 import TileList from '../../components/tileList/TileList'
 import OffCanvasForm from '../../components/offCanvasForm/OffCanvasForm'
 import CustomToast from '../../components/customToast/CustomToast'
+import SearchBar from '../../components/searchBar/SearchBar'
 import './ContactPage.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { library } from '@fortawesome/fontawesome-svg-core'
@@ -11,7 +12,7 @@ import { fas } from '@fortawesome/free-solid-svg-icons'
 library.add(fas)
 
 export default function ContactPage(props) {
-	const { contacts, addContact, removeContact } = props
+	const { contacts, addContact, removeContact, searchContacts, setSearchContacts } = props
 
 	const [firstName, setFirstName] = useState('')
 	const [lastName, setLastName] = useState('')
@@ -76,6 +77,9 @@ export default function ContactPage(props) {
 					<Button className='ml-2 btn_add' variant='dark' onClick={handleShowCanvas}>
 						<FontAwesomeIcon className='ml-2' size='1x' icon={['fas', 'plus-square']} />
 					</Button>
+				</Col>
+				<Col>
+					<SearchBar type='contacts' searchAppointments={searchContacts} setSearchAppointments={setSearchContacts} />
 				</Col>
 			</Row>
 			<TileList items={contacts} removeItems={removeContact} />

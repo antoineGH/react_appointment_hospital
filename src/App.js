@@ -14,7 +14,9 @@ function App() {
 	const [contacts, setContacts] = useState(contactList)
 	const [appointments, setAppointments] = useState(appointmentList)
 	const [searchAppointments, setSearchAppointments] = useState('')
+	const [searchContacts, setSearchContacts] = useState('')
 	const [filteredAppointments, setFilteredAppointments] = useState(appointments)
+	const [filteredContacts, setFilteredContacts] = useState(contacts)
 
 	const [showModalAppointment, setShowModalAppointment] = useState(false)
 	const [showModalContact, setShowModalContact] = useState(false)
@@ -33,6 +35,17 @@ function App() {
 			})
 		)
 	}, [searchAppointments, appointments])
+
+	useEffect(() => {
+		setFilteredContacts(
+			contacts.filter((contact) => {
+				return (
+					contact.firstName.toLocaleLowerCase().includes(searchContacts.toLocaleLowerCase()) ||
+					contact.lastName.toLocaleLowerCase().includes(searchContacts.toLocaleLowerCase())
+				)
+			})
+		)
+	}, [searchContacts, contacts])
 
 	const addContact = (firstName, lastName, phone, email) => {
 		setContacts((existingContact) => [...existingContact, { firstName, lastName, phone, email }])
@@ -101,7 +114,7 @@ function App() {
 						/>
 					</Route>
 					<Route path={routes.doctors.url}>
-						<ContactPage {...{ contacts, addContact, removeContact }} />
+						<ContactPage {...{ addContact, removeContact, searchContacts, setSearchContacts }} contacts={filteredContacts} />
 					</Route>
 				</Switch>
 				<Redirect exact from='/' to={routes.home.url} />
