@@ -1,0 +1,29 @@
+.btn_add::before {
+	content: 'Add';
+}
+
+@media (max-width: 768px) {
+	.btn_add {
+		height: 50px;
+		width: 50px;
+		border-radius: 50%;
+		border: 5px solid #96a0ac;
+		overflow: hidden;
+	}
+
+	.btn_add::before {
+		content: '+';
+		height: 40px;
+		width: 40px;
+		font-size: 40px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		justify-self: center;
+		justify-items: center;
+		position: relative;
+		top: -0.65rem;
+		left: -0.7rem;
+		color: white;
+	}
+}

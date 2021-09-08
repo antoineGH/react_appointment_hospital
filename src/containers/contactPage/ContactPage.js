@@ -4,6 +4,7 @@ import CountElement from '../../components/countElement/CountElement'
 import TileList from '../../components/tileList/TileList'
 import OffCanvasForm from '../../components/offCanvasForm/OffCanvasForm'
 import CustomToast from '../../components/customToast/CustomToast'
+import './ContactPage.css'
 
 export default function ContactPage(props) {
 	const { contacts, addContact, removeContact } = props
@@ -71,9 +72,7 @@ export default function ContactPage(props) {
 			<Row className='mt-3'>
 				<Col className='col_count'>
 					<CountElement title='Doctor' count={countDoctors} />
-					<Button className='ml-2' variant='dark' onClick={handleShowCanvas}>
-						&#43; Add Doctor
-					</Button>
+					<Button className='ml-2 btn_add' variant='dark' onClick={handleShowCanvas}></Button>
 				</Col>
 			</Row>
 			<TileList items={contacts} removeItems={removeContact} />

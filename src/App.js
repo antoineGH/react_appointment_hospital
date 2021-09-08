@@ -99,7 +99,7 @@ function App() {
 						<ContactPage contacts={contacts} addContact={addContact} removeContact={removeContact} />
 					</Route>
 				</Switch>
-				<Redirect exact from='/' to={routes.appointments.url} />
+				<Redirect exact from='/' to={routes.home.url} />
 			</Router>
 			<ModalDeleteAppointement
 				show={showModalAppointment}

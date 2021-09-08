@@ -4,6 +4,7 @@ import CountElement from '../../components/countElement/CountElement'
 import TileList from '../../components/tileList/TileList'
 import OffCanvasForm from '../../components/offCanvasForm/OffCanvasForm'
 import CustomToast from '../../components/customToast/CustomToast'
+import './AppointmentPage.css'
 
 export default function AppointmentPage(props) {
 	const { appointments, contacts, addAppointment, removeAppointment } = props
@@ -53,9 +54,7 @@ export default function AppointmentPage(props) {
 			<Row className='mt-3'>
 				<Col className='col_count'>
 					<CountElement title='Appointment' count={countAppointments} />
-					<Button className='ml-2' variant='dark' onClick={handleShowCanvas}>
-						&#43; Add Appointment
-					</Button>
+					<Button className='ml-2 btn_add' variant='dark' onClick={handleShowCanvas}></Button>
 				</Col>
 			</Row>
 			<TileList items={appointments} removeItems={removeAppointment} />
