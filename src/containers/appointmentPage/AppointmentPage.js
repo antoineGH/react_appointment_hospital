@@ -12,22 +12,17 @@ import { fas } from '@fortawesome/free-solid-svg-icons'
 library.add(fas)
 
 export default function AppointmentPage(props) {
-	const {
-		appointments,
-		contacts,
-		addAppointment,
-		removeAppointment,
-		filteredAppointments,
-		setFilteredAppointments,
-		searchAppointments,
-		setSearchAppointments,
-	} = props
+	const { appointments, contacts, addAppointment, removeAppointment, searchAppointments, setSearchAppointments } = props
 
 	const [title, setTitle] = useState('')
 	const [contact, setContact] = useState('')
 	const [date, setDate] = useState('')
 	const [time, setTime] = useState('')
 	const [countAppointments, setCountAppointments] = useState(appointments.length)
+	const [showToast, setShowToast] = useState(false)
+	const [toastBody, setToastBody] = useState('')
+	const [toastType, setToastType] = useState('')
+	const [showCanvas, setShowCanvas] = useState(false)
 
 	useEffect(() => {
 		setCountAppointments(appointments.length)
@@ -52,16 +47,9 @@ export default function AppointmentPage(props) {
 		toggleToast()
 	}
 
-	// CANVAS
-	const [showCanvas, setShowCanvas] = useState(false)
+	const toggleToast = () => setShowToast(!showToast)
 	const handleCloseCanvas = () => setShowCanvas(false)
 	const handleShowCanvas = () => setShowCanvas(true)
-
-	// TOASTS
-	const [showToast, setShowToast] = useState(false)
-	const [toastBody, setToastBody] = useState('')
-	const [toastType, setToastType] = useState('')
-	const toggleToast = () => setShowToast(!showToast)
 
 	return (
 		<Container fluid className='container_appointment'>
@@ -78,21 +66,11 @@ export default function AppointmentPage(props) {
 			</Row>
 			<TileList items={appointments} removeItems={removeAppointment} />
 			<OffCanvasForm
+				{...{ showCanvas, handleCloseCanvas, title, setTitle, date, contacts, setContact, setDate, time, setTime, handleSubmit }}
 				titleCanvas={'Add Appointment'}
 				typeForm={'Appointment'}
-				showCanvas={showCanvas}
-				handleCloseCanvas={handleCloseCanvas}
-				title={title}
-				setTitle={setTitle}
-				date={date}
-				contacts={contacts}
-				setContact={setContact}
-				setDate={setDate}
-				time={time}
-				setTime={setTime}
-				handleSubmit={handleSubmit}
 			/>
-			{showToast && <CustomToast showToast={showToast} toggleToast={toggleToast} toastType={toastType} toastTime={'just now'} toastBody={toastBody} />}
+			{showToast && <CustomToast {...{ showToast, toggleToast, toastType, toastBody }} toastTime={'just now'} />}
 		</Container>
 	)
 }

@@ -95,8 +95,6 @@ function App() {
 								contacts,
 								addAppointment,
 								removeAppointment,
-								filteredAppointments,
-								setFilteredAppointments,
 								searchAppointments,
 								setSearchAppointments,
 							}}
