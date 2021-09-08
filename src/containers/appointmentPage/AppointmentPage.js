@@ -4,7 +4,12 @@ import CountElement from '../../components/countElement/CountElement'
 import TileList from '../../components/tileList/TileList'
 import OffCanvasForm from '../../components/offCanvasForm/OffCanvasForm'
 import CustomToast from '../../components/customToast/CustomToast'
+import SearchBar from '../../components/searchBar/SearchBar'
 import './AppointmentPage.css'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { fas } from '@fortawesome/free-solid-svg-icons'
+library.add(fas)
 
 export default function AppointmentPage(props) {
 	const { appointments, contacts, addAppointment, removeAppointment } = props
@@ -54,7 +59,12 @@ export default function AppointmentPage(props) {
 			<Row className='mt-3'>
 				<Col className='col_count'>
 					<CountElement title='Appointment' count={countAppointments} />
-					<Button className='ml-2 btn_add' variant='dark' onClick={handleShowCanvas}></Button>
+					<Button className='ml-2 btn_add' variant='dark' onClick={handleShowCanvas}>
+						<FontAwesomeIcon className='ml-2' size='1x' icon={['fas', 'plus-square']} />
+					</Button>
+				</Col>
+				<Col>
+					<SearchBar type='appointments' />
 				</Col>
 			</Row>
 			<TileList items={appointments} removeItems={removeAppointment} />
