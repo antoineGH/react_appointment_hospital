@@ -2,8 +2,9 @@ import React from 'react'
 import { Modal, Button } from 'react-bootstrap'
 import './ModalConfirm.css'
 
-export default function ModalDeleteAppointement(props) {
-	const { show, handleClose, confirmRemoveAppointment, position, elemToDelete } = props
+export default function ModalDeleteAppointement({ show, handleClose, confirmRemoveAppointment, appointmentId, elemToDelete }) {
+	// optional chaining
+	const title = `Are you sure you want to delete ${elemToDelete?.title}?` ?? ''
 
 	return (
 		<>
@@ -14,12 +15,12 @@ export default function ModalDeleteAppointement(props) {
 						&times;
 					</button>
 				</Modal.Header>
-				<Modal.Body>Are you sure you want to delete '{elemToDelete}'?</Modal.Body>
+				<Modal.Body>{title}</Modal.Body>
 				<Modal.Footer>
 					<Button variant='secondary' onClick={handleClose}>
 						Cancel
 					</Button>
-					<Button variant='danger' onClick={() => confirmRemoveAppointment(position)}>
+					<Button variant='danger' onClick={() => confirmRemoveAppointment(appointmentId)}>
 						Delete
 					</Button>
 				</Modal.Footer>

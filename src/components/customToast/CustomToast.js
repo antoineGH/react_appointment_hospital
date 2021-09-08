@@ -3,9 +3,7 @@ import { Row, Toast } from 'react-bootstrap'
 import './CustomToast.css'
 import { ProgressBar } from 'react-bootstrap'
 
-export default function CustomToast(props) {
-	const { showToast, toggleToast, toastType, toastTime, toastBody } = props
-
+export default function CustomToast({ showToast, toggleToast, toastType, toastTime, toastBody }) {
 	const typeAlert = {
 		danger: { text: 'Error', class: 'alert_danger', progress: 'danger' },
 		warning: { text: 'Warning', class: 'alert_warning', progress: 'warning' },

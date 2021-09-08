@@ -8,20 +8,37 @@ import ModalDeleteAppointement from './components/modalConfirm/ModalDeleteAppoin
 import ModalDeleteContact from './components/modalConfirm/ModalDeleteContact'
 import CustomToast from './components/customToast/CustomToast'
 import './App.css'
+import { contactList, appointmentList } from './constants/constants'
 
 function App() {
-	// CONTACTS
-	const [contacts, setContacts] = useState([
-		{ firstName: 'Antoine', lastName: 'Ratat', phone: '13111881660', email: 'antoine.ratat@gmail.com' },
-		{ firstName: 'Bastien', lastName: 'Ratat', phone: '13111881515', email: 'bastien.ratat@gmail.com' },
-	])
+	const [contacts, setContacts] = useState(contactList)
+	const [appointments, setAppointments] = useState(appointmentList)
+	const [searchAppointments, setSearchAppointments] = useState('')
+	const [filteredAppointments, setFilteredAppointments] = useState(appointments)
+
+	const [showModalAppointment, setShowModalAppointment] = useState(false)
+	const [showModalContact, setShowModalContact] = useState(false)
+	const [appointmentId, setAppointmentId] = useState()
+	const [elemToDelete, setElemToDelete] = useState()
+
+	const [showToast, setShowToast] = useState(false)
+	const [toastBody, setToastBody] = useState('')
+	const toggleToast = () => setShowToast(!showToast)
+
+	useEffect(() => {
+		setFilteredAppointments(
+			appointments.filter((appointment) => {
+				return appointment.title.toLocaleLowerCase().includes(searchAppointments.toLocaleLowerCase())
+			})
+		)
+	}, [searchAppointments, appointments])
 
 	const addContact = (firstName, lastName, phone, email) => {
 		setContacts((existingContact) => [...existingContact, { firstName, lastName, phone, email }])
 	}
 
 	const removeContact = (position) => {
-		setPosition(position)
+		setAppointmentId(position)
 		setElemToDelete(contacts[position - 1].firstName + ' ' + contacts[position - 1].lastName)
 		setShowModalContact(true)
 	}
@@ -30,68 +47,38 @@ function App() {
 		const copyContacts = contacts.slice()
 		copyContacts.splice(position - 1, 1)
 		setContacts(copyContacts)
-		setPosition()
+		setAppointmentId()
 		setShowModalContact(false)
 		setToastBody('Doctor removed')
 		setShowToast(true)
 	}
 
-	// APPPOINTMENTS
-	const [appointments, setAppointments] = useState([
-		{ title: 'Appointment Dentist', contact: 'Antoine', date: '2021-09-17', time: '19:48' },
-		{ title: 'Appointment Bank', contact: 'Bastien', date: '2021-09-17', time: '22:30' },
-	])
-	const [searchAppointments, setSearchAppointments] = useState('')
-	const [filteredAppointments, setFilteredAppointments] = useState(appointments)
-
-	useEffect(() => {
-		console.log('Search is being made')
-		setFilteredAppointments(
-			appointments.filter((appointment) => {
-				return appointment.title.toLocaleLowerCase().includes(searchAppointments.toLocaleLowerCase())
-			})
-		)
-	}, [searchAppointments, appointments])
-
 	const addAppointment = (title, contact, date, time) => {
 		setAppointments((existingAppointment) => [...existingAppointment, { title, contact, date, time }])
 	}
 
-	const removeAppointment = (position) => {
-		setPosition(position)
-		const elemToDelete = appointments[position - 1].title
-		if (elemToDelete.length === 0) {
-			return
+	const removeAppointment = (appointmentId) => {
+		if (appointmentId) {
+			setAppointmentId(appointmentId)
+			const elementToDelete = appointments.filter((element) => element.id === appointmentId)
+			setElemToDelete(elementToDelete[0])
+			setShowModalAppointment(true)
 		}
-		setElemToDelete(elemToDelete)
-		setShowModalAppointment(true)
+		return null
 	}
 
-	const confirmRemoveAppointment = (position) => {
-		const copyAppointments = appointments.slice()
-		copyAppointments.splice(position - 1, 1)
-		setAppointments(copyAppointments)
-		setPosition()
+	const confirmRemoveAppointment = (appointmentId) => {
+		const newAppointments = appointments.filter((appointment) => appointment.id !== appointmentId)
+		setAppointments(newAppointments)
 		setShowModalAppointment(false)
 		setToastBody('Appointment removed')
 		setShowToast(true)
 	}
 
-	// MODALS
-	const [showModalAppointment, setShowModalAppointment] = useState(false)
-	const [showModalContact, setShowModalContact] = useState(false)
-	const [position, setPosition] = useState()
-	const [elemToDelete, setElemToDelete] = useState()
-
 	const handleClose = () => {
 		setShowModalAppointment(false)
 		setShowModalContact(false)
 	}
-
-	// TOASTS
-	const [showToast, setShowToast] = useState(false)
-	const [toastBody, setToastBody] = useState('')
-	const toggleToast = () => setShowToast(!showToast)
 
 	return (
 		<div className='App'>
@@ -101,33 +88,29 @@ function App() {
 					<Route path={routes.appointments.url}>
 						<AppointmentPage
 							appointments={filteredAppointments}
-							contacts={contacts}
-							addAppointment={addAppointment}
-							removeAppointment={removeAppointment}
-							filteredAppointments={filteredAppointments}
-							setFilteredAppointments={setFilteredAppointments}
-							searchAppointments={searchAppointments}
-							setSearchAppointments={setSearchAppointments}
+							{...{
+								contacts,
+								addAppointment,
+								removeAppointment,
+								filteredAppointments,
+								setFilteredAppointments,
+								searchAppointments,
+								setSearchAppointments,
+							}}
 						/>
 					</Route>
 					<Route path={routes.doctors.url}>
-						<ContactPage contacts={contacts} addContact={addContact} removeContact={removeContact} />
+						<ContactPage {...{ contacts, addContact, removeContact }} />
 					</Route>
 				</Switch>
 				<Redirect exact from='/' to={routes.home.url} />
 			</Router>
-			<ModalDeleteAppointement
-				show={showModalAppointment}
-				handleClose={handleClose}
-				confirmRemoveAppointment={confirmRemoveAppointment}
-				position={position}
-				elemToDelete={elemToDelete}
-			/>
+			<ModalDeleteAppointement {...{ handleClose, confirmRemoveAppointment, appointmentId, elemToDelete }} show={showModalAppointment} />
 			<ModalDeleteContact
 				show={showModalContact}
 				handleClose={handleClose}
 				confirmRemoveContact={confirmRemoveContact}
-				position={position}
+				position={appointmentId}
 				elemToDelete={elemToDelete}
 			/>
 			{showToast && <CustomToast showToast={showToast} toggleToast={toggleToast} toastType={'success'} toastTime={'just now'} toastBody={toastBody} />}
