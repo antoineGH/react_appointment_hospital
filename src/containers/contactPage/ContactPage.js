@@ -19,6 +19,10 @@ export default function ContactPage(props) {
 	const [email, setEmail] = useState('')
 	const [duplicate, setDuplicate] = useState(false)
 	const [countDoctors, setCountDoctors] = useState(contacts.length)
+	const [showToast, setShowToast] = useState(false)
+	const [toastBody, setToastBody] = useState('')
+	const [toastType, setToastType] = useState('')
+	const [showCanvas, setShowCanvas] = useState(false)
 
 	useEffect(() => {
 		setCountDoctors(contacts.length)
@@ -60,14 +64,7 @@ export default function ContactPage(props) {
 		toggleToast()
 	}
 
-	// TOASTS
-	const [showToast, setShowToast] = useState(false)
-	const [toastBody, setToastBody] = useState('')
-	const [toastType, setToastType] = useState('')
 	const toggleToast = () => setShowToast(!showToast)
-
-	// CANVAS
-	const [showCanvas, setShowCanvas] = useState(false)
 	const handleCloseCanvas = () => setShowCanvas(false)
 	const handleShowCanvas = () => setShowCanvas(true)
 
@@ -83,21 +80,11 @@ export default function ContactPage(props) {
 			</Row>
 			<TileList items={contacts} removeItems={removeContact} />
 			<OffCanvasForm
+				{...{ showCanvas, handleCloseCanvas, firstName, setFirstName, lastName, setLastName, phone, setPhone, email, setEmail, handleSubmit }}
 				titleCanvas={'Add Doctor'}
 				typeForm={'Contact'}
-				showCanvas={showCanvas}
-				handleCloseCanvas={handleCloseCanvas}
-				firstName={firstName}
-				setFirstName={setFirstName}
-				lastName={lastName}
-				setLastName={setLastName}
-				phone={phone}
-				setPhone={setPhone}
-				email={email}
-				setEmail={setEmail}
-				handleSubmit={handleSubmit}
 			/>
-			{showToast && <CustomToast showToast={showToast} toggleToast={toggleToast} toastType={toastType} toastTime={'just now'} toastBody={toastBody} />}
+			{showToast && <CustomToast {...{ showToast, toggleToast, toastType, toastBody }} toastTime={'just now'} />}
 		</Container>
 	)
 }
