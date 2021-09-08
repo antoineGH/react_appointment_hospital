@@ -19,6 +19,7 @@ function App() {
 	const [showModalAppointment, setShowModalAppointment] = useState(false)
 	const [showModalContact, setShowModalContact] = useState(false)
 	const [appointmentId, setAppointmentId] = useState()
+	const [contactId, setContactId] = useState()
 	const [elemToDelete, setElemToDelete] = useState()
 
 	const [showToast, setShowToast] = useState(false)
@@ -37,17 +38,19 @@ function App() {
 		setContacts((existingContact) => [...existingContact, { firstName, lastName, phone, email }])
 	}
 
-	const removeContact = (position) => {
-		setAppointmentId(position)
-		setElemToDelete(contacts[position - 1].firstName + ' ' + contacts[position - 1].lastName)
-		setShowModalContact(true)
+	const removeContact = (contactId) => {
+		if (contactId) {
+			setContactId(contactId)
+			const elementToDelete = contacts.filter((element) => element.id === contactId)
+			setElemToDelete(elementToDelete[0])
+			setShowModalContact(true)
+		}
+		return null
 	}
 
-	const confirmRemoveContact = (position) => {
-		const copyContacts = contacts.slice()
-		copyContacts.splice(position - 1, 1)
-		setContacts(copyContacts)
-		setAppointmentId()
+	const confirmRemoveContact = (contactId) => {
+		const newContacts = contacts.filter((contact) => contact.id !== contactId)
+		setContacts(newContacts)
 		setShowModalContact(false)
 		setToastBody('Doctor removed')
 		setShowToast(true)
@@ -106,13 +109,7 @@ function App() {
 				<Redirect exact from='/' to={routes.home.url} />
 			</Router>
 			<ModalDeleteAppointement {...{ handleClose, confirmRemoveAppointment, appointmentId, elemToDelete }} show={showModalAppointment} />
-			<ModalDeleteContact
-				show={showModalContact}
-				handleClose={handleClose}
-				confirmRemoveContact={confirmRemoveContact}
-				position={appointmentId}
-				elemToDelete={elemToDelete}
-			/>
+			<ModalDeleteContact {...{ handleClose, confirmRemoveContact, contactId, elemToDelete }} show={showModalContact} />
 			{showToast && <CustomToast showToast={showToast} toggleToast={toggleToast} toastType={'success'} toastTime={'just now'} toastBody={toastBody} />}
 		</div>
 	)
