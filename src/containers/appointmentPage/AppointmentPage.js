@@ -54,17 +54,20 @@ export default function AppointmentPage(props) {
 	return (
 		<Container fluid className='container_appointment'>
 			<Row className='mt-3'>
-				<Col className='col_count'>
-					<CountElement title='Appointment' count={countAppointments} />
-					<Button className='ml-2 btn_add' variant='dark' onClick={handleShowCanvas}>
+				<Col className='col_count col-md-6'>
+					<Button className='mr-2 btn_add' variant='dark' onClick={handleShowCanvas}>
 						<FontAwesomeIcon className='ml-2' size='1x' icon={['fas', 'plus-square']} />
 					</Button>
+					<CountElement title='Appointment' count={countAppointments} />
 				</Col>
-				<Col>
+				<Col className='col-12 col-md-6 mt-3 mt-md-0'>
 					<SearchBar type='appointments' searchAppointments={searchAppointments} setSearchAppointments={setSearchAppointments} />
 				</Col>
 			</Row>
-			<TileList items={appointments} removeItems={removeAppointment} />
+			<Row className='mt-4'>
+				<Col className='col_menu'>Menu</Col>
+			</Row>
+			<TileList type='appointments' items={appointments} removeItems={removeAppointment} />
 			<OffCanvasForm
 				{...{ showCanvas, handleCloseCanvas, title, setTitle, date, contacts, setContact, setDate, time, setTime, handleSubmit }}
 				titleCanvas={'Add Appointment'}

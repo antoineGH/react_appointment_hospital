@@ -2,11 +2,16 @@
 	content: 'Add';
 }
 
+.col_menu {
+	background-color: pink;
+	margin: 15px;
+}
+
 @media (max-width: 768px) {
 	.btn_add {
 		height: 40px;
 		width: 40px;
-		border-radius: 50%;
+		border-radius: 0rem;
 		border: 5px solid #96a0ac;
 		overflow: hidden;
 	}
@@ -23,7 +28,7 @@
 		justify-items: center;
 		position: relative;
 		top: -0.8rem;
-		left: -0.85rem;
+		left: -0.9rem;
 		color: white;
 	}
 }

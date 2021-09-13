@@ -72,17 +72,17 @@ export default function ContactPage(props) {
 	return (
 		<Container className='container_contact'>
 			<Row className='mt-3'>
-				<Col className='col_count'>
-					<CountElement title='Doctor' count={countDoctors} />
-					<Button className='ml-2 btn_add' variant='dark' onClick={handleShowCanvas}>
+				<Col className='col_count col-md-6'>
+					<Button className='mr-2 btn_add' variant='dark' onClick={handleShowCanvas}>
 						<FontAwesomeIcon className='ml-2' size='1x' icon={['fas', 'plus-square']} />
 					</Button>
+					<CountElement title='Doctor' count={countDoctors} />
 				</Col>
-				<Col>
+				<Col className='col-12 col-md-6 mt-3 mt-md-0'>
 					<SearchBar type='contacts' searchAppointments={searchContacts} setSearchAppointments={setSearchContacts} />
 				</Col>
 			</Row>
-			<TileList items={contacts} removeItems={removeContact} />
+			<TileList type='contacts' items={contacts} removeItems={removeContact} />
 			<OffCanvasForm
 				{...{ showCanvas, handleCloseCanvas, firstName, setFirstName, lastName, setLastName, phone, setPhone, email, setEmail, handleSubmit }}
 				titleCanvas={'Add Doctor'}

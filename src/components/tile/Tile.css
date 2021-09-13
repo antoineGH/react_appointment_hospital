@@ -22,28 +22,145 @@ button:focus {
 }
 
 .row_tile {
-	display: flex;
-	flex-direction: row;
 	padding: 0.5rem 1rem;
 	margin: 1rem 0rem;
-	background-color: rgba(0, 0, 0, 0.151);
 	border-radius: 0.25rem;
+	background-color: rgba(0, 0, 0, 0.151);
 }
 
-.row_tile .col {
-	margin: auto;
+.col_tile {
+	display: grid;
+	grid-template: repeat(12, 1fr) / repeat(12, 1fr);
+	margin: 0;
+	padding: 0;
+	height: 15vh;
 }
 
-.row_tile .col p {
-	margin: auto;
+.col_tile .text-2 {
+	display: flex;
+}
+
+.col_tile .text-3 {
+	display: flex;
+}
+.col_tile .text-4 {
+	display: flex;
+	margin: 0rem;
+	padding: 0rem;
+}
+.col_tile .text-5 {
+	display: flex;
+	margin: 0rem;
+	padding: 0rem;
+}
+
+/* Tile Appointments */
+
+.col_tile.appointements .text-2 {
+	grid-area: 1 / 1 / span 6 / span 12;
+	justify-content: center;
+	align-content: flex-end;
+	align-items: flex-end;
+	font-size: 1.5rem;
+}
+
+.col_tile.appointements .text-3 {
+	grid-area: 10 / 1 / span 3 / span 12;
+	justify-content: center;
+	align-content: center;
+	align-items: center;
+}
+.col_tile.appointements .text-4 {
+	grid-area: 7 / 1 / span 3 / span 6;
+	justify-content: flex-end;
+	align-content: flex-start;
+	align-items: flex-start;
+	font-size: small;
+	padding-right: 0.5rem;
+}
+.col_tile.appointements .text-5 {
+	grid-area: 7 / 7 / span 3 / span 6;
+	justify-content: flex-start;
+	align-content: flex-start;
+	align-items: flex-start;
+	font-size: small;
+	padding-left: 2rem;
+}
+
+/* Tile Contacts */
+
+.col_tile.contacts .text-2 {
+	grid-area: 1 / 1 / span 6 / span 6;
+	justify-content: flex-end;
+	align-content: flex-end;
+	align-items: flex-end;
+	font-size: 1.5rem;
+	padding-right: 0rem;
+}
+
+.col_tile.col_tile.contacts .text-2 p {
+	margin-bottom: 0.2rem;
+}
+
+.col_tile.contacts .text-3 {
+	grid-area: 1 / 7 / span 6 / span 6;
+	justify-content: flex-start;
+	align-content: flex-end;
+	align-items: flex-end;
+	font-size: 1.5rem;
+	padding-left: 1rem;
+}
+
+.col_tile.col_tile.contacts .text-3 p {
+	margin-bottom: 0.2rem;
+}
+
+.col_tile.contacts .text-4 {
+	grid-area: 7 / 1 / span 3 / span 12;
+	justify-content: center;
+}
+.col_tile.contacts .text-5 {
+	grid-area: 10 / 1 / span 3 / span 12;
+	justify-content: center;
+}
+
+.remove-button {
+	position: absolute;
+	right: 0px;
+	top: 0.5rem;
 }
 
 @media (max-width: 576px) {
 	.row_tile {
-		flex-direction: column;
+		padding: 0.5rem 0rem;
 	}
+
+	.col_tile {
+		display: grid;
+		grid-template: repeat(12, 1fr) / repeat(12, 1fr);
+		margin: 0;
+		padding: 0;
+	}
+
+	.col_tile .text-2 {
+		grid-area: 1 / 1 / span 5 / span 12;
+		font-size: large;
+	}
+	.col_tile .text-3 {
+		grid-area: 9 / 1 / span 3 / span 12;
+	}
+	.col_tile .text-4 {
+		grid-area: 6 / 1 / span 3 / span 6;
+		font-size: small;
+	}
+	.col_tile .text-5 {
+		grid-area: 6 / 7 / span 3 / span 6;
+		font-size: small;
+	}
+
 	.remove-button {
-		margin: auto;
-		margin-top: 0.5rem;
+		position: absolute;
+		right: 0px;
+		top: 0px;
 	}
 }
