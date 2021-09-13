@@ -2,6 +2,11 @@
 	content: 'Add';
 }
 
+.btn-dark.focus,
+.btn-dark:focus {
+	box-shadow: none;
+}
+
 .col_menu {
 	background-color: pink;
 	margin: 15px;

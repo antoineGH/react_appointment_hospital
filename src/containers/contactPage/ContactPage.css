@@ -2,6 +2,11 @@
 	content: 'Add';
 }
 
+.btn-dark.focus,
+.btn-dark:focus {
+	box-shadow: none;
+}
+
 @media (max-width: 768px) {
 	.btn_add {
 		height: 50px;
