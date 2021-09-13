@@ -13,6 +13,22 @@
 			integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
 			crossorigin="anonymous"
 		/>
+		<style>
+			.fade-enter {
+				opacity: 0;
+			}
+			.fade-enter-active {
+				opacity: 1;
+				transition: opacity 300ms ease-out;
+			}
+			.fade-leave {
+				opacity: 1;
+			}
+			.fade-leave-active {
+				opacity: 0;
+				transition: opacity 300ms ease-out;
+			}
+		</style>
 		<link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
 		<title>Appointment Planner</title>
 	</head>

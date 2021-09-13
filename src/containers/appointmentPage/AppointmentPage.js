@@ -67,7 +67,9 @@ export default function AppointmentPage(props) {
 			<Row className='mt-4'>
 				<Col className='col_menu'>Menu</Col>
 			</Row>
+
 			<TileList type='appointments' items={appointments} removeItems={removeAppointment} />
+
 			<OffCanvasForm
 				{...{ showCanvas, handleCloseCanvas, title, setTitle, date, contacts, setContact, setDate, time, setTime, handleSubmit }}
 				titleCanvas={'Add Appointment'}
