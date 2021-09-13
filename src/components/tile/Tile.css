@@ -30,25 +30,29 @@ button:focus {
 
 .col_tile {
 	display: grid;
-	grid-template: repeat(12, 1fr) / repeat(12, 1fr);
+	grid-template: repeat(24, 1fr) / repeat(12, 1fr);
 	margin: 0;
 	padding: 0;
-	height: 15vh;
+	height: 9vh;
 }
 
 .col_tile .text-2 {
 	display: flex;
+	/* background-color: pink; */
 }
 
 .col_tile .text-3 {
 	display: flex;
+	/* background-color: rgb(255, 0, 43); */
 }
 .col_tile .text-4 {
+	/* background-color: rgb(163, 110, 118); */
 	display: flex;
 	margin: 0rem;
 	padding: 0rem;
 }
 .col_tile .text-5 {
+	/* background-color: rgb(219, 152, 163); */
 	display: flex;
 	margin: 0rem;
 	padding: 0rem;
@@ -57,43 +61,52 @@ button:focus {
 /* Tile Appointments */
 
 .col_tile.appointements .text-2 {
-	grid-area: 1 / 1 / span 6 / span 12;
+	grid-area: 5 / 1 / span 6 / span 12;
 	justify-content: center;
 	align-content: flex-end;
 	align-items: flex-end;
 	font-size: 1.5rem;
 }
 
+.col_tile.appointements .text-2 p {
+	margin-bottom: 0.3rem;
+}
+
 .col_tile.appointements .text-3 {
-	grid-area: 10 / 1 / span 3 / span 12;
+	grid-area: 19 / 1 / span 4 / span 12;
 	justify-content: center;
 	align-content: center;
 	align-items: center;
 }
+
+.col_tile.appointements .text-3 p {
+	margin-bottom: 1rem;
+}
+
 .col_tile.appointements .text-4 {
-	grid-area: 7 / 1 / span 3 / span 6;
+	grid-area: 11 / 1 / span 3 / span 6;
 	justify-content: flex-end;
 	align-content: flex-start;
 	align-items: flex-start;
-	font-size: small;
+	font-size: 0.9rem;
 	padding-right: 0.5rem;
 }
 .col_tile.appointements .text-5 {
-	grid-area: 7 / 7 / span 3 / span 6;
+	grid-area: 11 / 7 / span 3 / span 6;
 	justify-content: flex-start;
 	align-content: flex-start;
 	align-items: flex-start;
-	font-size: small;
+	font-size: 0.9rem;
 	padding-left: 2rem;
 }
 
 /* Tile Contacts */
 
 .col_tile.contacts .text-2 {
-	grid-area: 1 / 1 / span 6 / span 6;
+	grid-area: 5 / 1 / span 6 / span 6;
 	justify-content: flex-end;
 	align-content: flex-end;
-	align-items: flex-end;
+	align-items: center;
 	font-size: 1.5rem;
 	padding-right: 0rem;
 }
@@ -103,12 +116,12 @@ button:focus {
 }
 
 .col_tile.contacts .text-3 {
-	grid-area: 1 / 7 / span 6 / span 6;
+	grid-area: 5 / 7 / span 6 / span 6;
 	justify-content: flex-start;
 	align-content: flex-end;
-	align-items: flex-end;
+	align-items: center;
 	font-size: 1.5rem;
-	padding-left: 1rem;
+	padding-left: 0.6rem;
 }
 
 .col_tile.col_tile.contacts .text-3 p {
@@ -116,12 +129,14 @@ button:focus {
 }
 
 .col_tile.contacts .text-4 {
-	grid-area: 7 / 1 / span 3 / span 12;
+	grid-area: 13 / 1 / span 6 / span 12;
 	justify-content: center;
+	align-items: center;
 }
 .col_tile.contacts .text-5 {
-	grid-area: 10 / 1 / span 3 / span 12;
+	grid-area: 20/ 1 / span 4 / span 12;
 	justify-content: center;
+	align-items: center;
 }
 
 .remove-button {
@@ -131,31 +146,47 @@ button:focus {
 }
 
 @media (max-width: 576px) {
-	.row_tile {
-		padding: 0.5rem 0rem;
+	.col_tile.appointements .text-2 {
+		font-size: 1.2rem;
 	}
 
-	.col_tile {
-		display: grid;
-		grid-template: repeat(12, 1fr) / repeat(12, 1fr);
-		margin: 0;
-		padding: 0;
+	/* CONTACTS */
+
+	.col_tile.contacts .text-2 {
+		grid-area: 5 / 1 / span 6 / span 6;
+		font-size: 1.2rem;
+		padding-right: 0rem;
 	}
 
-	.col_tile .text-2 {
-		grid-area: 1 / 1 / span 5 / span 12;
-		font-size: large;
+	.col_tile.contacts .text-3 {
+		grid-area: 5 / 7 / span 6 / span 6;
+		font-size: 1.2rem;
+		padding-left: 0.8rem;
 	}
-	.col_tile .text-3 {
-		grid-area: 9 / 1 / span 3 / span 12;
+
+	.col_tile.contacts .text-4 {
+		grid-area: 14 / 1 / span 6 / span 12;
 	}
-	.col_tile .text-4 {
-		grid-area: 6 / 1 / span 3 / span 6;
-		font-size: small;
+	.col_tile.contacts .text-5 {
+		grid-area: 22/ 1 / span 4 / span 12;
 	}
-	.col_tile .text-5 {
-		grid-area: 6 / 7 / span 3 / span 6;
-		font-size: small;
+
+	/* APPOINTMENTS */
+
+	.col_tile.appointements .text-2 {
+		grid-area: 5 / 1 / span 6 / span 12;
+		font-size: 1.2rem;
+	}
+
+	.col_tile.appointements .text-3 {
+		grid-area: 22 / 1 / span 4 / span 12;
+	}
+
+	.col_tile.appointements .text-4 {
+		grid-area: 11 / 1 / span 3 / span 6;
+	}
+	.col_tile.appointements .text-5 {
+		grid-area: 11 / 7 / span 3 / span 6;
 	}
 
 	.remove-button {
